@@ -1,4 +1,4 @@
-package com.example.tele.config;
+package me.mexx.telegrambot.config;
 
 import com.pengrad.telegrambot.TelegramBot;
 import okhttp3.OkHttpClient;

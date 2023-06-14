@@ -1,8 +1,8 @@
-package com.example.tele.service.impl;
+package me.mexx.telegrambot.service.impl;
 
 
-import com.example.tele.exception.ServiceException;
-import com.example.tele.service.WeatherService;
+import me.mexx.telegrambot.exception.ServiceException;
+import me.mexx.telegrambot.service.WeatherService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import okhttp3.OkHttpClient;

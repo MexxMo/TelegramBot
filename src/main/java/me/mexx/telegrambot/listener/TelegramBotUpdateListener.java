@@ -1,10 +1,10 @@
-package com.example.tele.listener;
+package me.mexx.telegrambot.listener;
 
-import com.example.tele.constant.Information;
-import com.example.tele.exception.ServiceException;
-import com.example.tele.replymarkup.ReplyMarkup;
-import com.example.tele.service.ExchangeRatesService;
-import com.example.tele.service.WeatherService;
+import me.mexx.telegrambot.constant.Information;
+import me.mexx.telegrambot.exception.ServiceException;
+import me.mexx.telegrambot.replymarkup.ReplyMarkup;
+import me.mexx.telegrambot.service.ExchangeRatesService;
+import me.mexx.telegrambot.service.WeatherService;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Message;
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.util.List;
 
-import static com.example.tele.constant.Keyboard.*;
+import static me.mexx.telegrambot.constant.Keyboard.*;
 
 @Slf4j
 @Component

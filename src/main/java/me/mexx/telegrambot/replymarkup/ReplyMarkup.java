@@ -1,7 +1,7 @@
-package com.example.tele.replymarkup;
+package me.mexx.telegrambot.replymarkup;
 
-import com.example.tele.constant.Information;
-import com.example.tele.constant.Keyboard;
+import me.mexx.telegrambot.constant.Information;
+import me.mexx.telegrambot.constant.Keyboard;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.request.KeyboardButton;
 import com.pengrad.telegrambot.model.request.ParseMode;

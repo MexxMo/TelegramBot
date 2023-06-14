@@ -1,4 +1,4 @@
-package com.example.tele.exception;
+package me.mexx.telegrambot.exception;
 
 public class ServiceException extends Exception{
     public ServiceException(String message, Throwable cause) {

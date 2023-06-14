@@ -1,4 +1,4 @@
-package com.example.tele.constant;
+package me.mexx.telegrambot.constant;
 
 public class Keyboard {
     public static final String START = "/start";

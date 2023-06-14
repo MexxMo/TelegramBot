@@ -1,6 +1,6 @@
-package com.example.tele.service;
+package me.mexx.telegrambot.service;
 
-import com.example.tele.exception.ServiceException;
+import me.mexx.telegrambot.exception.ServiceException;
 
 public interface ExchangeRatesService {
 

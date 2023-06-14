@@ -1,4 +1,4 @@
-package com.example.tele;
+package me.mexx.telegrambot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

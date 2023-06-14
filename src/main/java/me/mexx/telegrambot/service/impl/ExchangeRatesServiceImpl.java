@@ -1,9 +1,9 @@
-package com.example.tele.service.impl;
+package me.mexx.telegrambot.service.impl;
 
 //import com.example.tele.client.CbrClient;
 
-import com.example.tele.exception.ServiceException;
-import com.example.tele.service.ExchangeRatesService;
+import me.mexx.telegrambot.exception.ServiceException;
+import me.mexx.telegrambot.service.ExchangeRatesService;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
