@@ -20,7 +20,7 @@ public class WeatherServiceImpl implements WeatherService {
     @Value("${yandex.weather.json.url}")
     private String urlYandex;
     @Value("${yandex.api.key}")
-    private String getKey;
+    private String KeyForYandexWeather;
 
     @Autowired
     private OkHttpClient client;
@@ -59,7 +59,7 @@ public class WeatherServiceImpl implements WeatherService {
 
     private String getJsonFromUrl(String url) throws ServiceException {
 
-        Request request = new Request.Builder().url(url).header("X-Yandex-API-Key", getKey).build();
+        Request request = new Request.Builder().url(url).header("X-Yandex-API-Key", KeyForYandexWeather).build();
 
         try (Response response = client.newCall(request).execute()) {
 
