@@ -3,5 +3,5 @@ package me.mexx.telegrambot.service;
 import me.mexx.telegrambot.exception.ServiceException;
 
 public interface WeatherService {
-    String getWeather() throws ServiceException;
+    String getWeather(String city) throws ServiceException;
 }

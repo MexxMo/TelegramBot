@@ -17,11 +17,10 @@ public class WeatherServiceImpl implements WeatherService {
     @Autowired
     private Gson gson;
 
-
     @Override
-    public String getWeather() throws ServiceException {
+    public String getWeather(String urlYandexCity) throws ServiceException {
 
-        String json = yandexWeatherClient.getJsonFromUrl();
+        String json = yandexWeatherClient.getJsonFromUrl(urlYandexCity);
 
         JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
 

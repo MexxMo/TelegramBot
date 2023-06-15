@@ -9,6 +9,7 @@ import com.pengrad.telegrambot.response.SendResponse;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.mexx.telegrambot.constant.City;
 import me.mexx.telegrambot.constant.Information;
 import me.mexx.telegrambot.exception.ServiceException;
 import me.mexx.telegrambot.replymarkup.ReplyMarkup;
@@ -44,18 +45,19 @@ public class TelegramBotUpdateListener implements UpdatesListener {
             updates.stream()
                     .filter(update -> update.message() != null)
                     .forEach(update -> {
+
+
+
                         log.info("упдата {}", update);
                         Message message = update.message();
                         Long chatId = message.chat().id();
-//                        Chat chat = message.chat();
                         String text = message.text();
                         String userName = message.chat().username();
                         log.info("текст {} ", text);
                         log.info("сообщение {} ", message);
 
                         switch (text) {
-                            case START -> replyMarkup.sendStartMenu(chatId, userName);
-
+                            case START, Main -> replyMarkup.sendStartMenu(chatId, userName, update);
 
                             case USD, "/usd" -> usdCommand(chatId);
 
@@ -64,7 +66,10 @@ public class TelegramBotUpdateListener implements UpdatesListener {
                             case CNY, "/cny" -> cnyCommand(chatId);
 
                             case HELP, "/help" -> helpCommand(chatId);
-                            case "/weather", WEATHER -> weatherCommand(chatId);
+                            case "/weather", WEATHER -> replyMarkup.weatherMenu(chatId);
+                            case "Москва" -> weatherCommand(chatId, City.YANDEX_WEATHER_MOSCOW);
+                            case "Челябинск" -> weatherCommand(chatId, City.YANDEX_WEATHER_CHELYABINSK);
+                            case "п.Западный" -> weatherCommand(chatId, City.YANDEX_WEATHER_ZAPADNY);
 
                             default -> unknownCommand(chatId);
 
@@ -86,10 +91,10 @@ public class TelegramBotUpdateListener implements UpdatesListener {
 
     }
 
-    private void weatherCommand(Long chatId) {
+    private void weatherCommand(Long chatId, String city) {
         String weather;
         try {
-            weather = weatherService.getWeather();
+            weather = weatherService.getWeather(city);
         } catch (ServiceException e) {
             e.printStackTrace();
             weather = "Что-то пошло не так";

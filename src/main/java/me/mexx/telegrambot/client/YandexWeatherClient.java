@@ -17,15 +17,13 @@ public class YandexWeatherClient {
     @Autowired
     private OkHttpClient okHttpClient;
 
-    @Value("${yandex.weather.json.url}")
-    private String urlYandex;
 
     @Value("${yandex.api.key}")
     private String KeyForYandexWeather;
 
-    public String getJsonFromUrl() throws ServiceException {
+    public String getJsonFromUrl(String urlYandexCity) throws ServiceException {
 
-        Request request = new Request.Builder().url(urlYandex)
+        Request request = new Request.Builder().url(urlYandexCity)
                 .header("X-Yandex-API-Key", KeyForYandexWeather).build();
 
         try (Response response = okHttpClient.newCall(request).execute()) {
