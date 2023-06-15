@@ -1,10 +1,5 @@
 package me.mexx.telegrambot.listener;
 
-import me.mexx.telegrambot.constant.Information;
-import me.mexx.telegrambot.exception.ServiceException;
-import me.mexx.telegrambot.replymarkup.ReplyMarkup;
-import me.mexx.telegrambot.service.ExchangeRatesService;
-import me.mexx.telegrambot.service.WeatherService;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Message;
@@ -14,8 +9,12 @@ import com.pengrad.telegrambot.response.SendResponse;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.mexx.telegrambot.constant.Information;
+import me.mexx.telegrambot.exception.ServiceException;
+import me.mexx.telegrambot.replymarkup.ReplyMarkup;
+import me.mexx.telegrambot.service.ExchangeRatesService;
+import me.mexx.telegrambot.service.WeatherService;
 import org.springframework.stereotype.Component;
-
 
 import java.time.LocalDate;
 import java.util.List;
@@ -55,8 +54,7 @@ public class TelegramBotUpdateListener implements UpdatesListener {
                         log.info("сообщение {} ", message);
 
                         switch (text) {
-                            case START -> replyMarkup.sendStartMenu(chatId,userName);
-
+                            case START -> replyMarkup.sendStartMenu(chatId, userName);
 
 
                             case USD, "/usd" -> usdCommand(chatId);
@@ -65,7 +63,7 @@ public class TelegramBotUpdateListener implements UpdatesListener {
 
                             case CNY, "/cny" -> cnyCommand(chatId);
 
-                            case HELP, "/help"-> helpCommand(chatId);
+                            case HELP, "/help" -> helpCommand(chatId);
                             case "/weather", WEATHER -> weatherCommand(chatId);
 
                             default -> unknownCommand(chatId);
@@ -87,6 +85,7 @@ public class TelegramBotUpdateListener implements UpdatesListener {
         }
 
     }
+
     private void weatherCommand(Long chatId) {
         String weather;
         try {
@@ -95,8 +94,9 @@ public class TelegramBotUpdateListener implements UpdatesListener {
             e.printStackTrace();
             weather = "Что-то пошло не так";
         }
-        sendMessage(chatId,weather);
+        sendMessage(chatId, weather);
     }
+
     private void usdCommand(Long chatId) {
         String formattedText;
         try {

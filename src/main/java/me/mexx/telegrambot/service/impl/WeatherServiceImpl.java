@@ -1,29 +1,19 @@
 package me.mexx.telegrambot.service.impl;
 
 
-import me.mexx.telegrambot.exception.ServiceException;
-import me.mexx.telegrambot.service.WeatherService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
+import me.mexx.telegrambot.client.YandexWeatherClient;
+import me.mexx.telegrambot.exception.ServiceException;
+import me.mexx.telegrambot.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
 
 @Service
 public class WeatherServiceImpl implements WeatherService {
-    @Value("${yandex.weather.json.url}")
-    private String urlYandex;
-    @Value("${yandex.api.key}")
-    private String KeyForYandexWeather;
 
     @Autowired
-    private OkHttpClient client;
+    private YandexWeatherClient yandexWeatherClient;
     @Autowired
     private Gson gson;
 
@@ -31,7 +21,7 @@ public class WeatherServiceImpl implements WeatherService {
     @Override
     public String getWeather() throws ServiceException {
 
-        String json = getJsonFromUrl(urlYandex);
+        String json = yandexWeatherClient.getJsonFromUrl();
 
         JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
 
@@ -57,21 +47,4 @@ public class WeatherServiceImpl implements WeatherService {
     }
 
 
-    private String getJsonFromUrl(String url) throws ServiceException {
-
-        Request request = new Request.Builder().url(url).header("X-Yandex-API-Key", KeyForYandexWeather).build();
-
-        try (Response response = client.newCall(request).execute()) {
-
-            ResponseBody body = response.body();
-
-            return body == null ? null : body.string();
-
-
-        } catch (IOException e) {
-            throw new ServiceException("Ошибка c получением погоды", e);
-        }
-
-
-    }
 }
